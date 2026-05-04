@@ -1,0 +1,26 @@
+---
+- name: Clone PassMaster and set permissions
+  hosts: all
+  vars:
+    repo_url: "https://github.com/dans6887/PassMaster.git"
+    dest_path: "/opt/PassMaster"
+    exec_file: "passmaster.py"
+
+  tasks:
+    - name: Ensure git is installed
+      become: true
+      package:
+        name: git
+        state: present
+
+    - name: Clone the PassMaster repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ dest_path }}"
+        clone: yes
+        update: yes
+
+    - name: Make the python script executable
+      file:
+        path: "{{ dest_path }}/{{ exec_file }}"
+        mode: '0755'
