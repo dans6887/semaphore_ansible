@@ -1,0 +1,11 @@
+---
+- name: Install sl on all Debian-based hosts
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update apt cache and install sl
+      apt:
+        name: sl
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
