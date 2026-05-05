@@ -4,7 +4,7 @@
   vars:
     repo_url: "https://github.com/dans6887/PassMaster.git"
     dest_path: "/home/semaphore/PassMaster" #set destionation folder to the semaphore home folder
-    exec_file: "passmaster.py"
+    exec_file: "PassMaster.py"
 
   tasks:
     - name: Ensure git is installed #error checking to make sure git is installed
