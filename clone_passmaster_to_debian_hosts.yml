@@ -3,7 +3,7 @@
   hosts: all
   vars:
     repo_url: "https://github.com/dans6887/PassMaster.git"
-    dest_path: "/opt/PassMaster"
+    dest_path: "/home/semaphore/PassMaster"
     exec_file: "passmaster.py"
 
   tasks:
