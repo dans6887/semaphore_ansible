@@ -1,1 +1,27 @@
 
+---
+- name: Clone Network_Speedtest and set permissions
+  hosts: all
+  vars:
+    repo_url: "https://github.com/dans6887/network_speedtest"
+    dest_path: "/home/semaphore/Network_Speedtest" #set destionation folder to the semaphore home folder
+    exec_file: "network_speedtest.py"
+
+  tasks:
+    - name: Ensure git is installed #error checking to make sure git is installed
+      become: true
+      package:
+        name: git
+        state: present
+
+    - name: Clone the PassMaster repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ dest_path }}"
+        clone: yes
+        update: yes
+
+    - name: Make the python script executable
+      file:
+        path: "{{ dest_path }}/{{ exec_file }}"
+        mode: '0755'
